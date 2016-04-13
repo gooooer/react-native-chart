@@ -317,7 +317,7 @@
             [label setFrame:CGRectMake(p.x - textSize.width / 2, p.y + 15, textSize.width, textSize.height)];
             [label setString:text];
             [label setAlignmentMode:kCAAlignmentCenter];
-            [label setForegroundColor:[[UIColor whiteColor] CGColor]];
+            [label setForegroundColor:[self.parentChartView.labelTextColor CGColor]];
             
             [self.layer addSublayer:label];
         }

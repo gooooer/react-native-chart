@@ -1,12 +1,12 @@
 {
   "name": "react-native-chart",
-  "version": "0.1.14",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/onefold/react-native-chart.git"
+    "url": "https://github.com/gooooer/react-native-chart.git"
   },
   "main": "lib/index.js",
-  "author": "Tom Auty <tom.auty@gmail.com> (http://tomauty.cc)",
+  "author": "Andrii Gorishnii <gooooer@gmail.com>",
   "scripts": {
     "compile": "./node_modules/.bin/babel --presets es2015,stage-0,react -d lib/ index.js",
     "prepublish": "npm run compile"

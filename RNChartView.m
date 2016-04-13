@@ -95,7 +95,8 @@
 		if( [type isEqualToString:@"pie"] ) {
 			self.handleAsPieChart = YES;
 			self.showGrid = NO;
-			self.showAxis = NO;
+			self.showXAxis = NO;
+            self.showYAxis = NO;
 		}
 	}
 
@@ -182,7 +183,8 @@
 
 	_defaultColor = [UIColor blueColor];
 	_verticalGridStep = 3;
-	_showAxis = YES;
+	_showXAxis = YES;
+    _showYAxis = YES;
 	_showXAxisLabels = YES;
 	_showYAxisLabels = YES;
 	_axisColor = [UIColor colorWithWhite:0.7 alpha:1.0];

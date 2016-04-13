@@ -45,6 +45,7 @@
 
 	for ( NSDictionary* plotDict in self.parentChartView.chartData ) {
 		BOOL showDataPoint = [RCTConvert BOOL:plotDict[@"showDataPoint"]];
+        BOOL showDataPointWithLabels = [RCTConvert BOOL:plotDict[@"showDataPointWithLabels"]];
 		NSString* chartType = [RCTConvert NSString:plotDict[@"type"]];
 
 		if ( [chartType isEqualToString:@"bar"] ) {
@@ -54,7 +55,7 @@
 		} else {
 			[self drawLineChart:plotDict];
 
-			if ( showDataPoint ) {
+			if ( showDataPoint || showDataPointWithLabels ) {
 				[self drawDataPoints:plotDict];
 			}
 		}
@@ -245,6 +246,11 @@
 
 	NSNumber* dataPointRadius = [RCTConvert NSNumber:dataDict[@"dataPointRadius"]];
 	NSNumber* highlightRadius = ( dataDict[@"highlightRadius"] != nil ) ? [RCTConvert NSNumber:dataDict[@"highlightRadius"]] : nil;
+    
+    const BOOL showDataPointWithLabels = [RCTConvert BOOL:dataDict[@"showDataPointWithLabels"]];
+    const UIFont *labelFont = [UIFont boldSystemFontOfSize:self.parentChartView.labelFontSize];
+    const NSDictionary *userAttributes = @{NSFontAttributeName: labelFont,
+                                           NSForegroundColorAttributeName: [UIColor blackColor]};
 
 
 	CGFloat axisHeight = self.frame.size.height;
@@ -298,9 +304,24 @@
 			fillLayer.strokeColor = pointColor.CGColor;
 
 		}
-
-
-		[self.layer addSublayer:fillLayer];
+        [self.layer addSublayer:fillLayer];
+        
+        if ( showDataPointWithLabels ) {
+            
+            const CATextLayer *label = [[CATextLayer alloc] init];
+            const NSNumber *number = dataPlots[i];
+            const NSString *text = [NSString stringWithFormat:@"%d", [number intValue]];
+            const CGSize textSize = [text sizeWithAttributes: userAttributes];
+            
+            [label setFontSize:self.parentChartView.labelFontSize];
+            [label setFrame:CGRectMake(p.x - textSize.width / 2, p.y + 15, textSize.width, textSize.height)];
+            [label setString:text];
+            [label setAlignmentMode:kCAAlignmentCenter];
+            [label setForegroundColor:[[UIColor whiteColor] CGColor]];
+            
+            [self.layer addSublayer:label];
+        }
+        
 		[self.layers addObject:fillLayer];
 	}
 }
@@ -493,7 +514,7 @@
 	CGFloat axisWidth = self.frame.size.width;
 	CGFloat axisHeight = self.frame.size.height;
 
-	if ( self.parentChartView.showAxis ) {
+	if ( self.parentChartView.showYAxis ) {
 		CGContextSetLineWidth(ctx, self.parentChartView.axisLineWidth);
 		CGContextSetStrokeColorWithColor(ctx, [self.parentChartView.axisColor CGColor]);
 
@@ -533,7 +554,7 @@
 				CGFloat v = maxBound - (maxBound - minBound) / self.parentChartView.verticalGridStep * i;
 				CGFloat lowestPoint = maxBound - (maxBound - minBound);
 
-				if ( v == lowestPoint && self.parentChartView.showAxis ) {
+				if ( v == lowestPoint && self.parentChartView.showXAxis ) {
 					CGContextSetLineWidth(ctx, self.parentChartView.axisLineWidth);
 					CGContextSetStrokeColorWithColor(ctx, [self.parentChartView.axisColor CGColor]);
 				} else {

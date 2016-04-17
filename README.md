@@ -2,7 +2,7 @@
 
 This fork adds one particular feature to existing react-native-chart functionality. It allows you to snap value's labels to data points and hide X/Y axes independently. Here's screenshot demonstarting what was added:
 
-![Screenshot](https://raw.githubusercontent.com/tomauty/react-native-chart/master/screenshots/README.png)
+![Screenshot](https://raw.githubusercontent.com/tomauty/react-native-chart/master/screenshots/ADDON.png)
 
 Since the rest of functionality is the same you can see original README with little changes below.
 

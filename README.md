@@ -2,7 +2,7 @@
 
 This fork adds one particular feature to existing react-native-chart functionality. It allows you to snap value's labels to data points and hide X/Y axes independently. Here's screenshot demonstarting what was added:
 
-![Screenshot](https://raw.githubusercontent.com/tomauty/react-native-chart/master/screenshots/ADDON.png)
+![Screenshot](https://raw.githubusercontent.com/gooooer/react-native-chart/master/screenshots/ADDON.png)
 
 Since the rest of functionality is the same you can see original README with little changes below.
 
@@ -13,9 +13,8 @@ react-native-chart is a simple module for adding line charts, area charts, or ba
 ![Screenshot](https://raw.githubusercontent.com/gooooer/react-native-chart/master/screenshots/README.png)
 
 ## Getting Started
-[![NPM](https://nodei.co/npm/react-native-chart.png?downloads=true)](https://nodei.co/npm/react-native-chart/)
 
-1. `npm install react-native-chart --save`
+1. `npm install git+ssh://git@github.com/gooooer/react-native-chart.git --save`
 2. I recommend using [rnpm](https://github.com/rnpm/rnpm) for linking.
 
 	2a. `npm install -g rnpm`
@@ -92,6 +91,7 @@ All properties are optional otherwise noted
 	- **`lineWidth`** - _(Float)_ - Line chart only: line width / Default: 1.0
 	- **`widthPercent`** - _(Float)_ - Bar chart only: [0 - 1.0], 0.1 means very skinny, 1.0 means bars touch each other / Default: 0.5
 	- **`showDataPoint`** - _(Boolean)_ - show or hide the data points / Default: false
+	- **`showDataPointWithLabels`** - _(Boolean)_ - show or hide the data points with their values snapped to them / Default: false
 	- **`dataPointColor`** - _(String/Color)_ - outline color of the data point / Default: blue
 	- **`dataPointFillColor`** - _(String/Color)_ - fill color of the data point / Default: blue
 	- **`dataPointRadius`** - _(Float)_ - the radius of the data point / Default: 1.0
@@ -115,7 +115,8 @@ All properties are optional otherwise noted
 - **`hideVerticalGridLines`** _(Boolean)_ - hides the vertical grid lines when showGrid is true / Default: false
 - **`labelFontSize`** _(Integer)_ - font size of axis labels / Default: 10
 - **`labelTextColor`** _(String/Color)_ - text color of axis labels / Default: gray
-- **`showAxis`** _(Boolean)_ - show or hide axis / Default: true
+- **`showXAxis`** _(Boolean)_ - show or hide X axis / Default: true
+- **`showYAxis`** _(Boolean)_ - show or hide Y axis / Default: true
 - **`showGrid`** _(Boolean)_ - show or hide grid / Default: true
 - **`showXAxisLabels`** _(Boolean)_ - show or hide axis labels for the X axis / Default: true
 - **`showYAxisLabels`** _(Boolean)_ - show or hide axis labels for the Y axis / Default: true

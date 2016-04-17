@@ -1,11 +1,16 @@
 # react-native-chart
 
-[![Join the chat at https://gitter.im/tomauty/react-native-chart](https://badges.gitter.im/tomauty/react-native-chart.svg)](https://gitter.im/tomauty/react-native-chart)
-[![npm version](https://badge.fury.io/js/react-native-chart.svg)](https://badge.fury.io/js/react-native-chart)
+This fork adds one particular feature to existing react-native-chart functionality. It allows you to snap value's labels to data points and hide X/Y axes independently. Here's screenshot demonstarting what was added:
+
+![Screenshot](https://raw.githubusercontent.com/tomauty/react-native-chart/master/screenshots/README.png)
+
+Since the rest of functionality is the same you can see original README with little changes below.
+
+****
 
 react-native-chart is a simple module for adding line charts, area charts, or bar charts to your React Native app.
 
-![Screenshot](https://raw.githubusercontent.com/tomauty/react-native-chart/master/screenshots/README.png)
+![Screenshot](https://raw.githubusercontent.com/gooooer/react-native-chart/master/screenshots/README.png)
 
 ## Getting Started
 [![NPM](https://nodei.co/npm/react-native-chart.png?downloads=true)](https://nodei.co/npm/react-native-chart/)
@@ -128,9 +133,3 @@ All properties are optional otherwise noted
 - Multi Line Chart
 - Scatter/Bubble chart
 - Testing w/ Travis CI
-
-## Info/Support
-
-Work prior to repo transfer on Feb 1, 2015 was the work of Hyun Cho @ OneFold.
-
-Email tom.auty@gmail.com for support.

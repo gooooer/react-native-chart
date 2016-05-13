@@ -12,6 +12,9 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface RNChartPlotAreaView ()
+{
+    float _lineGraphBottomPadding;
+}
 
 @property (nonatomic, strong) NSMutableArray* layers;
 
@@ -25,6 +28,14 @@
 	_parentChartView = parentChartView;
 
 	self.backgroundColor = [UIColor clearColor];
+    
+    const UIFont *labelFont = [UIFont boldSystemFontOfSize:self.parentChartView.labelFontSize];
+    const NSDictionary *userAttributes = @{NSFontAttributeName: labelFont,
+                                           NSForegroundColorAttributeName: [UIColor blackColor]};
+    const NSString *text = [NSString stringWithFormat:@"%d", 0];
+    const CGSize textSize = [text sizeWithAttributes: userAttributes];
+    
+    _lineGraphBottomPadding = textSize.height * 2.2;
 
 	return self;
 }
@@ -85,7 +96,7 @@
 	CGFloat minBound = [self.parentChartView minVerticalBound];
 	CGFloat maxBound = [self.parentChartView maxVerticalBound];
 
-	CGFloat scale = axisHeight / (maxBound - minBound);
+	CGFloat scale = (axisHeight - _lineGraphBottomPadding) / (maxBound - minBound);
 
 	UIBezierPath *noPath = [self getLinePath:dataPlots scale:0 withSmoothing:smoothingTension close:NO];
 	UIBezierPath *path = [self getLinePath:dataPlots scale:scale withSmoothing:smoothingTension close:NO];
@@ -257,7 +268,7 @@
 
 	CGFloat minBound = [self.parentChartView minVerticalBound];
 	CGFloat maxBound = [self.parentChartView maxVerticalBound];
-	CGFloat scale = axisHeight / (maxBound - minBound);
+	CGFloat scale = (axisHeight - _lineGraphBottomPadding) / (maxBound - minBound);
 
 	for ( int i=0; i < dataPlots.count; i++) {
 		CGPoint p = [self getPointForIndex:i data:dataPlots withScale:scale];
@@ -278,7 +289,7 @@
 				}
 			}
 		}
-		p.y +=	minBound * scale;
+		p.y += minBound * scale;
 
 		if( shouldHighlight && highlightRadius != nil ) {
 			radius = highlightRadius;
@@ -334,7 +345,7 @@
 	NSUInteger horizontalGridStep = self.parentChartView.xLabels.count;
 
 	CGFloat axisWidth = self.frame.size.width;
-	CGFloat axisHeight = self.frame.size.height;
+	CGFloat axisHeight = self.frame.size.height - _lineGraphBottomPadding;
 
 	CGFloat horizScale = [self.parentChartView horizontalScale];
 	CGFloat xOffset = (axisWidth / (horizontalGridStep)) * horizScale * 0.4;

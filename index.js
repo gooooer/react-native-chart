@@ -1,9 +1,11 @@
 'use strict';
 import React, {
 	PropTypes,
-	requireNativeComponent,
+} from 'react';
+import {
+	requireNativeComponent
 } from 'react-native';
-const { processColor } = React;
+const processColor = require('processColor');
 
 /** A native reference to the chart view */
 const CHART_REF = 'chart';

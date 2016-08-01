@@ -187,7 +187,7 @@
     _showYAxis = YES;
 	_showXAxisLabels = YES;
 	_showYAxisLabels = YES;
-	_axisColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+    _axisColor = [UIColor colorWithRed:203.0/255.0 green:104.0/255.0 blue:67/255.0 alpha:1];
 	_gridColor = [UIColor colorWithWhite:0.9 alpha:1.0];
 	_showGrid = YES;
 	_gridLineWidth = 0.5;
@@ -197,7 +197,7 @@
 
 	// Labels attributes
 	_labelFontSize = 10;
-	_labelTextColor = [UIColor grayColor];
+    _labelTextColor = [UIColor colorWithRed:203.0/255.0 green:104.0/255.0 blue:67/255.0 alpha:1];
 	_labelFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:_labelFontSize];
 
 	_chartFontSize = 14.0;

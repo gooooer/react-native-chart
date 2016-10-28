@@ -14,6 +14,7 @@
 @interface RNChartPlotAreaView ()
 {
     float _lineGraphBottomPadding;
+    CGSize _sampleTextSize;
 }
 
 @property (nonatomic, strong) NSMutableArray* layers;
@@ -33,9 +34,9 @@
     const NSDictionary *userAttributes = @{NSFontAttributeName: labelFont,
                                            NSForegroundColorAttributeName: [UIColor blackColor]};
     const NSString *text = [NSString stringWithFormat:@"%d", 0];
-    const CGSize textSize = [text sizeWithAttributes: userAttributes];
+    _sampleTextSize = [text sizeWithAttributes: userAttributes];
     
-    _lineGraphBottomPadding = textSize.height * 2.2;
+    _lineGraphBottomPadding = 1;
 
 	return self;
 }
@@ -91,7 +92,7 @@
 
 	CGFloat smoothingTension = dataDict[@"smoothingTension"] != nil ? [dataDict[@"smoothingTension"] floatValue] : 0.0;
 
-	CGFloat axisHeight = self.frame.size.height;
+	CGFloat axisHeight = self.frame.size.height - _sampleTextSize.height - 5;
 
 	CGFloat minBound = [self.parentChartView minVerticalBound];
 	CGFloat maxBound = [self.parentChartView maxVerticalBound];
@@ -264,7 +265,7 @@
                                            NSForegroundColorAttributeName: [UIColor blackColor]};
 
 
-	CGFloat axisHeight = self.frame.size.height;
+	CGFloat axisHeight = self.frame.size.height - _sampleTextSize.height - 5;
 
 	CGFloat minBound = [self.parentChartView minVerticalBound];
 	CGFloat maxBound = [self.parentChartView maxVerticalBound];
@@ -317,15 +318,14 @@
 		}
         [self.layer addSublayer:fillLayer];
         
-        if ( showDataPointWithLabels ) {
-            
+        const NSNumber *number = dataPlots[i];
+        if ( showDataPointWithLabels && [number intValue] > 0) {
             const CATextLayer *label = [[CATextLayer alloc] init];
-            const NSNumber *number = dataPlots[i];
             const NSString *text = [NSString stringWithFormat:@"%d", [number intValue]];
             const CGSize textSize = [text sizeWithAttributes: userAttributes];
             
             [label setFontSize:self.parentChartView.labelFontSize];
-            [label setFrame:CGRectMake(p.x - textSize.width / 2, p.y + 15, textSize.width, textSize.height)];
+            [label setFrame:CGRectMake(p.x - textSize.width / 2, p.y - 10 - textSize.height, textSize.width, textSize.height)];
             [label setString:text];
             [label setAlignmentMode:kCAAlignmentCenter];
             [label setForegroundColor:[self.parentChartView.labelTextColor CGColor]];
